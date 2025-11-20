@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, Button,  View, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { useState } from "react"
+
+import ModalItem  from './components/ModalItem';
+
 export default function App() {
 
   const [ textItem, setTextItem ] = useState("");
   const [ itemList, setItemList ] = useState([]);
-  const [ modalVisible, setModalVisible ] = useState(true);
+  const [ modalVisible, setModalVisible ] = useState(false);
 
   
   const addItem = () => {
@@ -18,11 +21,11 @@ export default function App() {
   }
   
   const handleCerrarModal = () => {
-      setModalVisible(false);
+    setModalVisible(false);
   }
 
-const handleOpenModal = () => {
-      setModalVisible(true);
+  const handleOpenModal = () => {
+    setModalVisible(true);
   }
 
   const handleEliminarTask = () => {
@@ -47,28 +50,9 @@ const handleOpenModal = () => {
             </TouchableOpacity>
             )}
         />
-      
-      {  /* Seccion del Modal */  }
-
-      <Modal visible={modalVisible} transparent animationType='fade' >
-        <View style={ styles.modalContainer }>
-            <View style={styles.modalContent}>
-              <Text  style={ styles.modaleTitle}> Soy el Título</Text>
-
-            </View>
-            <Text> Detalle de la Tarea</Text>
-            
-            <View style={ styles.modalButtons}>
-               <Button title='Cerrar' onPress={ handleCerrarModal }  />
-               <Button title='Eliminar' /> 
-            </View>
-
-        </View>
-
-
-      </Modal>
-
-
+      <ModalItem 
+           onCerrarModal={handleCerrarModal} modalVisible={modalVisible} 
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -99,28 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'teal', 
     margin:10,
     borderRadius: 10
-  },
-  modalContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-    width: '70%',
-    backgroundColor: '#d4d1d1ff'
-  },
-  modalContent: {
-     backgroundColor: '#FFF',
-     padding: 20,
-     justifyContent: 'space-between',
-     borderRadius: 10
-  },
-  modaleTitle: {
-     fontSize: 20,
-     fontWeight: 'bold'
-  },
-  modalButtons: {
-    flexDirection: 'row',
-    gap: 10
   }
 
 });
