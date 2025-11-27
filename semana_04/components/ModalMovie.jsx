@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Modal, View, Text, Button } from 'react-native';
+import { StyleSheet, Modal, Image, View, Text, Button } from 'react-native';
 
 const ModalMovie = ({ visible, onClose, onDelete, item }) => {
-
+  
   return (
     <Modal
       visible={visible}
@@ -15,7 +15,12 @@ const ModalMovie = ({ visible, onClose, onDelete, item }) => {
           <Text style={styles.modalTitle}>
             {item ? item.description : 'Detalles de la película'}
           </Text>
-
+             <Image  
+                style={ styles.photo} 
+                  source={{
+                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  }}
+            />
           <Text style={styles.modalSubtitle}>
             {item
               ? 'sinopsis, duracion, categoría'
@@ -36,6 +41,10 @@ const ModalMovie = ({ visible, onClose, onDelete, item }) => {
 export default ModalMovie;
 
 const styles = StyleSheet.create({
+  photo:{
+    width: 100,
+    height: 100,
+  },
   modalOverlay: {
     flex: 1,
     justifyContent: 'center',

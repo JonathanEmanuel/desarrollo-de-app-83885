@@ -1,16 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, Button, Image, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, TextInput, Button, View, TouchableOpacity, FlatList } from 'react-native';
 import { useState } from 'react';
 import { colors } from './global/colors';
 import Header from './components/Header';
 import ModalMovie from './components/ModalMovie';
 
-import Search from './components/Search';
+import { Home } from './screens/Home';
 
-import movies from './data/movies.json'
-
-
-export default function App() {
+export default function List() {
   const [textItem, setTextItem] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,33 +38,31 @@ export default function App() {
   return (
     <View style={styles.screen}>
 
-      <View style={styles.inputContainer}>
-        <Header title="Movie APP" />
-        <Search />
+      <Home />
 
-  
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          onChangeText={setTextItem}
+          value={textItem}
+          style={styles.input}
+          placeholder="Nombre de la película"
+          placeholderTextColor="#888"
+        />
+        <Button onPress={addMovie} title='Agregar Pelicula' color="#e50202" />
       </View>
 
       <FlatList
-        data={movies}
-        keyExtractor={(item) => item.id}
+        data={movieList}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity key={item.id} onPress={() => handleOpenModal(item)}>
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>{item.title}</Text>
-   
-              <Image 
-                style={ styles.photo}
-                source={ { uri: item.photoUrl }} 
-              />
+              <Text style={styles.listItemText}>{item.description}</Text>
             </View>
           </TouchableOpacity>
         )}
       />
-
-
-
-
 
       <ModalMovie
         visible={modalVisible}
@@ -89,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   inputContainer: {
-    flexDirection: "column",
+    flexDirection: "row",
     justifyContent: "space-between",
     gap: 10,
     marginBottom: 20
@@ -111,9 +106,5 @@ const styles = StyleSheet.create({
   },
   listItemText: {
     color: '#fff'
-  },
-    photo:{
-    width: 100,
-    height: 100,
-  },
+  }
 });
