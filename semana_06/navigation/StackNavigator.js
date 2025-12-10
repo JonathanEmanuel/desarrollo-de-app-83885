@@ -4,6 +4,7 @@ import Home from "../screens/Home";
 import Movies from "../screens/Movies";
 import MovieDetail from "../screens/MovieDetail";
 import Header from "../components/Header";
+import Favorites from "../screens/Favorites";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,13 @@ export default function StackNavigator() {
           header: () => <Header title="Detalles" />,
         }} 
        />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          header: () => <Header title="Mis Favoritos ⭐" />,
+        }}
+      />
     </Stack.Navigator>
   );
 }
