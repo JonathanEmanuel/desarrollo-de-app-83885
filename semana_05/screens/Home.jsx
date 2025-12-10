@@ -1,33 +1,29 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
 import { colors } from '../global/colors'
-import Header from '../components/Header'
 import categories from '../data/categories.json';
 
-const handle = () => {
-    
-}
-
-export const Home = () => {
+const Home = ({ navigation }) => {
   return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Categorías</Text>
 
-    <View style={ styles.container}>
-       <Header title="Movie APP" />
-        <Text style={ styles.title}> Categorías de Peliculas</Text>
-
-         <FlatList
-            data={categories}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                <TouchableOpacity key={item.id} onPress={ handle } >
-                    <View style={styles.listItem}>
-                      <Text style={styles.listItemText}>{item.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )}
-        />
+      <FlatList
+        data={categories}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MoviesScreen", { category: item.name })}
+          >
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
-  )
-}
+  );
+};
+
 
 const styles = StyleSheet.create({
     screen: {
@@ -59,3 +55,5 @@ const styles = StyleSheet.create({
     color: '#fff'
   }
 })
+
+export default Home

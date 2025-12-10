@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, Button, View, TouchableOpacity, FlatList } from 'react-native';
 import { useState } from 'react';
 import { colors } from './global/colors';
-import Header from './components/Header';
 import ModalMovie from './components/ModalMovie';
 
 import { Home } from './screens/Home';
