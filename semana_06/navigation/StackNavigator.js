@@ -11,12 +11,30 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        header: () => <Header title="Movie App" />,
+        header: () => <Header title="Movie App " />,
       }}
     >
-      <Stack.Screen name="HomeScreen" component={Home} />
-      <Stack.Screen name="MoviesScreen" component={Movies} />
-      <Stack.Screen name="Detail" component={MovieDetail} />
+      <Stack.Screen 
+        name="HomeScreen" 
+        component={Home} 
+        options={{
+          header: () => <Header title="Movie App" />,
+        }}
+      />
+      <Stack.Screen 
+        name="MoviesScreen" 
+        component={Movies} 
+        options={{
+            header: () => <Header title="Catálogo de Películas" />,
+        }}
+      />
+      <Stack.Screen 
+        name="Detail" 
+        component={MovieDetail} 
+        options={{
+          header: () => <Header title="Detalles" />,
+        }} 
+       />
     </Stack.Navigator>
   );
 }

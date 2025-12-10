@@ -1,12 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
 import { colors } from '../global/colors'
-import Header from '../components/Header'
 import categories from '../data/categories.json';
 
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header title="Movie APP" />
       <Text style={styles.title}>Categorías</Text>
 
       <FlatList

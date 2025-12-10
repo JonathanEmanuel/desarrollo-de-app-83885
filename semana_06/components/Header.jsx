@@ -3,21 +3,32 @@ import { colors } from '../global/colors'
 
 const Header = ( { title }) => {
   return (
-    <View>
-        <Text style={styles.title}> { title }</Text>
+    <View style={styles.container}>
+        <Text style={styles.text}> { title }</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: 10,
-    textAlign: 'center'
+  container: {
+    width: "100%",
+    height: 70,
+    backgroundColor: "#111",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomColor: colors.border,
+    borderBottomWidth: 1.5,
+    shadowColor: "#000",
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 5,
+    elevation: 8,
   },
-})
-
+  text: {
+    fontSize: 24,
+    fontWeight: "800",
+    color: "#fff",
+    letterSpacing: 1,
+  },
+});
 export default Header

@@ -13,7 +13,7 @@ export default function TabNavigator() {
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName = route.name === "Home" ? "home" : "film";
-          return <Ionicons name={iconName} size={focused ? 28 : 22} color={color} />;
+          return <Ionicons name={iconName} size={ focused ? 28 : 22 } color={ color } />;
         },
         tabBarActiveTintColor: "#e50202",
         tabBarInactiveTintColor: "#888",
