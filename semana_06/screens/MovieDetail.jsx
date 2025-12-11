@@ -1,9 +1,17 @@
+import { useDispatch, useSelector  } from 'react-redux'
+import { toggleFavorite } from '../feactures/favorites/favoritesSlice'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { addToFavorites } from "../data/favoriteFunctions";
 import { colors } from "../global/colors";
 
 export default function MovieDetail({ route }) {
   const { movie } = route.params;
+
+  const dispatch = useDispatch();
+  const favorites = useSelector( (state) => state.favorites.list );
+  console.log( favorites)
+  console.log(movie);
+  // Verificamos si la peli está en favoritos
+  const isFavorites = favorites.some( item => item.id === movie.id);
 
   return (
     <View style={styles.container}>
@@ -14,9 +22,11 @@ export default function MovieDetail({ route }) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => addToFavorites(movie)}
+        onPress={ () => dispatch( toggleFavorite(movie) ) }
       >
-        <Text style={styles.buttonText}>Agregar a Favoritos ⭐</Text>
+        <Text style={styles.buttonText}>
+          { isFavorites ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
+        </Text>
       </TouchableOpacity>
     </View>
   );

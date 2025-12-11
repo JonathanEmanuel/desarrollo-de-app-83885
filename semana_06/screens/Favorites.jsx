@@ -1,11 +1,15 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { favorites } from "../data/favorites";
-import { removeFromFavorites } from "../data/favoriteFunctions";
+import { useSelector, useDispatch } from 'react-redux'
+
 import { colors } from "../global/colors";
 
-export default function Favorites({ navigation }) {
 
-  return (
+export default function Favorites({ navigation }) {
+        
+        const favorites = useSelector( (state) => state.favorites.list )
+        const dispatch = useDispatch();
+    
+return (
     <View style={styles.container}>
       <Text style={styles.title}>Mis Favoritos</Text>
 
@@ -19,7 +23,7 @@ export default function Favorites({ navigation }) {
               <Image style={styles.photo} source={{ uri: item.photoUrl }} />
               <Text style={styles.text}>{item.title}</Text>
 
-              <TouchableOpacity onPress={() => removeFromFavorites(item.id)}>
+              <TouchableOpacity onPress={() => console.log(item.id)}>
                 <Text style={styles.delete}>Eliminar</Text>
               </TouchableOpacity>
             </View>
